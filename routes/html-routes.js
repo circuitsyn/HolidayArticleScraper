@@ -3,12 +3,12 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    // db.Article.find({}).then(function(data) {
+    db.Article.find({}).then(function(data) {
       res.render("partials/index", {
         msg: "Welcome!",
-        // result: data
+        result: data
       });
-    // });
+    });
   });
 
   // Load clipped items page
