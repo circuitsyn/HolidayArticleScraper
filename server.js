@@ -31,9 +31,19 @@ app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(error) {
+  //log any errors
+  if (error) {
+    console.log(error);
+  }
+  // or log success
+  else {
+    console.log("mongoose connection is successful");
+  }
+});
 
-// Routes
+
+
 // Routes
 require("./routes/api-routes")(app);
 require("./routes/html-routes")(app);
