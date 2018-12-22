@@ -5,8 +5,10 @@ var exphbs = require("express-handlebars");
 
 // Initialize Express
 var app = express();
+var router = express.Router();
 
 // Configure middleware
+app.use(router);
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Parse request body as JSON
@@ -15,7 +17,7 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-
+var PORT = 3000 || process.env.PORT;
 
 // Handlebars
 app.engine(
@@ -38,6 +40,7 @@ require("./routes/html-routes")(app);
 
 
 // Start the server
-app.listen(3000 || process.env.PORT, function() {
+app.listen(PORT, function() {
   console.log("App running - go catch it!");
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
