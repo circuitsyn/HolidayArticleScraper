@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.MedSightData.findAll({}).then(function(data) {
+    db.Article.find({}).then(function(data) {
       res.render("partials/index", {
         msg: "Welcome!",
         result: data
@@ -13,7 +13,7 @@ module.exports = function(app) {
 
   // Load clipped items page
   app.get("/clipped", function(req, res) {
-    db.MedSightData.findAll({}).then(function(dbMedsightdata) {
+    db.Article.find({}).then(function(dbMedsightdata) {
       res.render("partials/clipped", {
         msg: "You've got clips!",
         result: data
