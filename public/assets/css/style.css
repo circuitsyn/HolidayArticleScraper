@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "holiday";
+    src: url("../fonts/MiraculousChristmas.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Main";
+    src: url("../fonts/Spring_Holiday.woff2") format("woff2");
+}
+
+.jumbotron {
+    background-image: url("../images/snowBG.gif");
+    background-size: cover;
+    min-height: 26vw;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    
+  }
+
+.greetingHeader {
+    font-family: "Holiday", monospace;
+    font-size: 7vw;
+}
+
+.greetingText {
+    font-family: 'Main', monospace;
+    font-size: 2.5vw;
+    font-weight: bold;
+}
