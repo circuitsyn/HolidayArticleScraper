@@ -24,6 +24,18 @@ const saveArticle = (currentID) => {
   });
 }
 
+//Delete article function
+const deleteArticle = (currentID) => {
+  event.preventDefault();
+  let id = currentID;
+  $.ajax({
+    method: "GET",
+    url: "/api/deleteArticle/" + id
+  }).then(function() {
+    $("#deleteModal").modal("toggle");
+  });
+}
+
 //Scrape Bob Villa article function
 const scrapeVilla = () => {
   event.preventDefault();
@@ -48,9 +60,11 @@ const clearArticles = () => {
 
 
 //Delete Item
-$('#deleteBtn').click( () => {
+$('.deleteBtn').on("click", function() {
   currentID = $(this).attr("data-id");
-  db.Article.remove({id: currentID});
+  deleteArticle(currentID);
+  console.log('Deleted article!');
+  location.reload();
 });
 
 //Save Item

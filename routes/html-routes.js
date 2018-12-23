@@ -4,7 +4,7 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Article.find({saved: false}).then(function(data) {
-      console.log(data);
+      // console.log(data);
       res.render("partials/index", {
         msg: "Welcome!",
         result: data

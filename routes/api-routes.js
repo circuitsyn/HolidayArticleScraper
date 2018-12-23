@@ -73,19 +73,32 @@ app.get("/api/scrape/Bob", function(req, res) {
     });
   });
 
-  //Route for changing article to unsaved
+  //Route for changing article to saved
   app.put("/api/articles/save/:id", function(req, res) {
     console.log('id: ', req.params.id);
     db.Article.update({_id: req.params.id}, {$set: {saved: true}})
       .then(function(response) {
-        console.log ('removed from saved');
+        console.log ('saved');
       })
       .catch(function(err) {
         res.json(err);
     });
   });
 
-  //Route to clear table of unsaved
+  //Route to delete Article
+  app.get("/api/deleteArticle/:id", function(req, res) {
+    console.log('id: ', req.params.id);
+    db.Article.deleteOne({_id: req.params.id})
+      .then(function(response) {
+        console.log ('deleted');
+      })
+      .catch(function(err) {
+        res.json(err);
+    });
+  });
+  
+
+  //Route to clear table of unsaved articles
   app.get("/api/clear", function(req, res) {
     db.Article.deleteMany({saved: false})
       .then(function(response) {
