@@ -15,7 +15,7 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-var PORT = 3000 || process.env.PORT;
+var PORT = process.env.PORT || 3000;
 
 // Handlebars
 app.engine(
@@ -28,7 +28,7 @@ app.set("view engine", "handlebars");
 
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/articleScraper";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(error) {
   //log any errors
   if (error) {
