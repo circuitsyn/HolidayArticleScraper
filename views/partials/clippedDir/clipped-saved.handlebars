@@ -13,17 +13,17 @@
           <p class="cardText">
             {{description}}
           </p>
-          <a class="cardLink btn-sm btn-success" target="_blank" href="{{link}}">Click here for more!</a>
+          <a class="cardLink btn btn-success" target="_blank" href="{{link}}">Click here for more!</a>
         </div>
         <div class="col-3">
           <div class="row">
-            <button type="button" class="cardLink btn-sm btn-success unsaveBtn" data-id="{{_id}}">UNSAVE</button>
+            <button type="button" class="btnGrp btn btn-success unsaveBtn" data-id="{{_id}}">UNSAVE</button>
           </div>
           <div class="row">
-            <button type="button" class="cardLink btn-sm btn-success deleteBtn" data-id="{{_id}}">DELETE</button>
+            <button type="button" class="btnGrp btn btn-success deleteBtn" data-id="{{_id}}">DELETE</button>
           </div>
           <div class="row">
-            <button type="button" class="cardLink btn-sm btn-success noteBtn" data-id="{{_id}}">ADD NOTE</button>
+            <button type="button" class="btnGrp btn btn-success noteBtn" data-toggle="modal" data-target="#exampleModal" data-id="{{_id}}" data-whatever="ADD NOTE">ADD NOTE</button>
           </div>
         </div>
       </div>
