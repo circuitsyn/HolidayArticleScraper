@@ -85,6 +85,20 @@ app.get("/api/scrape/Bob", function(req, res) {
     });
   });
 
+  //Route to clear table of unsaved
+  app.get("/api/clear", function(req, res) {
+    db.Article.deleteMany({saved: false})
+      .then(function(response) {
+        console.log ('cleared all unsaved');
+      })
+      .catch(function(err) {
+        res.json(err);
+    });
+  });
+  
+
+
+// ------------------------------------
 
   // Route for getting all Articles from the db
   app.get("api/articles", function(req, res) {

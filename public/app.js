@@ -1,7 +1,7 @@
 $(document.body).ready(function() {
 //functions
 //unsave item function
-var unsaveArticle = (currentID) => {
+const unsaveArticle = (currentID) => {
   event.preventDefault();
   let id = currentID;
   $.ajax({
@@ -13,7 +13,7 @@ var unsaveArticle = (currentID) => {
 }
 
 //save article function
-var saveArticle = (currentID) => {
+const saveArticle = (currentID) => {
   event.preventDefault();
   let id = currentID;
   $.ajax({
@@ -25,7 +25,7 @@ var saveArticle = (currentID) => {
 }
 
 //Scrape Bob Villa article function
-var scrapeVilla = () => {
+const scrapeVilla = () => {
   event.preventDefault();
   $.ajax({
     method: "GET",
@@ -34,6 +34,18 @@ var scrapeVilla = () => {
     location.reload();
   });
 }
+
+//clear articles function
+const clearArticles = () => {
+  event.preventDefault();
+  $.ajax({
+    method: "GET",
+    url: "/api/clear"
+  }).then(function() {
+    location.reload();
+  });
+};
+
 
 //Delete Item
 $('#deleteBtn').click( () => {
@@ -49,7 +61,6 @@ $('.saveBtn').on("click", function() {
   location.reload();
 });
 
-
 //unsave Item
 $('.unsaveBtn').on("click", function() {
   currentID = $(this).attr("data-id");
@@ -58,14 +69,15 @@ $('.unsaveBtn').on("click", function() {
   location.reload();
 });
 
-$('#saveChanges').click( () => {
-  currentID = $(this).attr("data-id");
-});
-
 //scrape function
 $('#bobVillaScrape').on("click", function() {
   scrapeVilla();
 });
+
+//Clear Items
+$('#clear').on("click", function() {
+  clearArticles();
+})
 
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
