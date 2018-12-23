@@ -5,10 +5,8 @@ var exphbs = require("express-handlebars");
 
 // Initialize Express
 var app = express();
-var router = express.Router();
 
 // Configure middleware
-app.use(router);
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Parse request body as JSON

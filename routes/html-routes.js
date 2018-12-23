@@ -1,8 +1,8 @@
 var db = require("../models");
 
-module.exports = function(router) {
+module.exports = function(app) {
   // Load index page
-  router.get("/", function(req, res) {
+  app.get("/", function(req, res) {
     db.Article.find({saved: false}).then(function(data) {
       console.log(data);
       res.render("partials/index", {
@@ -13,7 +13,7 @@ module.exports = function(router) {
   });
 
   // Load clipped items page
-  router.get("/clipped", function(req, res) {
+  app.get("/clipped", function(req, res) {
     db.Article.find({saved: true}).then(function(data) {
       res.render("partials/clipped", {
         msg: "You've got clips!",
@@ -23,7 +23,7 @@ module.exports = function(router) {
   });
   
   // Render 404 page for any unmatched routes
-  router.get("*", function(req, res) {
+  app.get("*", function(req, res) {
     res.render("partials/404");
   });
 
