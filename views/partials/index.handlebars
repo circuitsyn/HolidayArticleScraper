@@ -10,7 +10,9 @@
   
           {{!-- Injecting card blocks --}}
             {{#each result}}
-                {{> clippedDir/clipped-block }}
+              {{#unless saved}}
+                {{> clippedDir/article-block }}
+              {{/unless}}
             {{/each}}  
     </div>
     <a href="/">← Back To Home</a>

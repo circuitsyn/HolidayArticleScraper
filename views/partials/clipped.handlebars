@@ -1,12 +1,15 @@
-Clipped Page
+<div class="jumbotron jumbotron-fluid">
+  <div id="articles" class="container">
+    <h1 class="greetingHeader">&#38; Saved Articles &#38;</h1>
+    <p class="ml-4 greetingText">Here you can manage all of your saved articles as a community. You have the ability to add a note for safe keeping or to remove it from saved. Keep in mind if you remove it from saved it will be moved back to the main article section. If you choose delete it will scrap it entirely.</p>
+  </div>
+</div>
 
-  <div class="container">
-    <div class="row col-12">
-  
-          {{!-- Injecting card blocks --}}
-            {{#each result}}
-                {{> clippedDir/clipped-block }}
-            {{/each}}  
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      {{#each result}}  
+          {{> clippedDir/clipped-saved}}
+      {{/each}}              
     </div>
     <a href="/">← Back To Home</a>
   </div>

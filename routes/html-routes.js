@@ -14,7 +14,7 @@ module.exports = function(router) {
 
   // Load clipped items page
   router.get("/clipped", function(req, res) {
-    db.Article.find({saved: true}).then(function(dbMedsightdata) {
+    db.Article.find({saved: true}).then(function(data) {
       res.render("partials/clipped", {
         msg: "You've got clips!",
         result: data
