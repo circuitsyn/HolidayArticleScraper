@@ -26,9 +26,12 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
+// Routes
+require("./routes/api-routes")(app);
+require("./routes/html-routes")(app);
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/articleScraper";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/holidayArticleScraper";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(error) {
   //log any errors
   if (error) {
@@ -39,13 +42,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(error) {
     console.log("mongoose connection is successful");
   }
 });
-
-
-
-// Routes
-require("./routes/api-routes")(app);
-require("./routes/html-routes")(app);
-
 
 // Start the server
 app.listen(PORT, function() {

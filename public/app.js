@@ -24,6 +24,17 @@ var saveArticle = (currentID) => {
   });
 }
 
+//Scrape Bob Villa article function
+var scrapeVilla = () => {
+  event.preventDefault();
+  $.ajax({
+    method: "GET",
+    url: "/api/scrape/Bob"
+  }).then(function() {
+    location.reload();
+  });
+}
+
 //Delete Item
 $('#deleteBtn').click( () => {
   currentID = $(this).attr("data-id");
@@ -39,8 +50,6 @@ $('.saveBtn').on("click", function() {
 });
 
 
-
-
 //unsave Item
 $('.unsaveBtn').on("click", function() {
   currentID = $(this).attr("data-id");
@@ -51,6 +60,11 @@ $('.unsaveBtn').on("click", function() {
 
 $('#saveChanges').click( () => {
   currentID = $(this).attr("data-id");
+});
+
+//scrape function
+$('#bobVillaScrape').on("click", function() {
+  scrapeVilla();
 });
 
 // Grab the articles as a json

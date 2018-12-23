@@ -9,7 +9,7 @@ var cheerio = require("cheerio");
 module.exports = function(app) {
 
     // A GET route for scraping the echoJS website
-app.get("api/scrape", function(req, res) {
+app.get("/api/scrape/Bob", function(req, res) {
     // First, we grab the body of the html with axios
     axios.get("https://www.bobvila.com/slideshow/christmas-decorations-gone-wild-46521#big-christmas-tree").then(function(response) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
