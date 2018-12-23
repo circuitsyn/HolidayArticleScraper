@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(router) {
   // Load index page
   router.get("/", function(req, res) {
-    db.Article.find({}).then(function(data) {
+    db.Article.find({saved: false}).then(function(data) {
       console.log(data);
       res.render("partials/index", {
         msg: "Welcome!",

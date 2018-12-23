@@ -1,3 +1,58 @@
+$(document.body).ready(function() {
+//functions
+//unsave item function
+var unsaveArticle = (currentID) => {
+  event.preventDefault();
+  let id = currentID;
+  $.ajax({
+    method: "PUT",
+    url: "/api/articles/unsave/" + id
+  }).then(function() {
+    $("#unsavedModal").modal("toggle");
+  });
+}
+
+//save article function
+var saveArticle = (currentID) => {
+  event.preventDefault();
+  let id = currentID;
+  $.ajax({
+    method: "PUT",
+    url: "/api/articles/save/" + id
+  }).then(function() {
+    $("#savedModal").modal("toggle");
+  });
+}
+
+//Delete Item
+$('#deleteBtn').click( () => {
+  currentID = $(this).attr("data-id");
+  db.Article.remove({id: currentID});
+});
+
+//Save Item
+$('.saveBtn').on("click", function() {
+  currentID = $(this).attr("data-id");
+  saveArticle(currentID);
+  console.log("Ive been Clicked! - unsave");
+  location.reload();
+});
+
+
+
+
+//unsave Item
+$('.unsaveBtn').on("click", function() {
+  currentID = $(this).attr("data-id");
+  unsaveArticle(currentID);
+  console.log("Ive been Clicked! - unsave");
+  location.reload();
+});
+
+$('#saveChanges').click( () => {
+  currentID = $(this).attr("data-id");
+});
+
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
   // For each one
@@ -69,4 +124,5 @@ $(document).on("click", "#savenote", function() {
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+});
 });

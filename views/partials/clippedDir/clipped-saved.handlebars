@@ -17,10 +17,13 @@
         </div>
         <div class="col-3">
           <div class="row">
-            <button id="saveBtn" type="button" class="cardLink btn-sm btn-success" data-id="{{_id}}">REMOVE</button>
+            <button type="button" class="cardLink btn-sm btn-success unsaveBtn" data-id="{{_id}}">UNSAVE</button>
           </div>
           <div class="row">
-            <button id="deleteBtn" type="button" class="cardLink btn-sm btn-success" data-id="{{_id}}">DELETE</button>
+            <button type="button" class="cardLink btn-sm btn-success deleteBtn" data-id="{{_id}}">DELETE</button>
+          </div>
+          <div class="row">
+            <button type="button" class="cardLink btn-sm btn-success noteBtn" data-id="{{_id}}">ADD NOTE</button>
           </div>
         </div>
       </div>
