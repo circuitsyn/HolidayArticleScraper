@@ -71,11 +71,12 @@ const clearArticles = () => {
 };
 
 //Delete Note
-$("#note-content").on( "click", ".deleteNoteBtn", function() {
+$("#note-content").on( "click", ".deleteNoteBtn", function(e) {
+  e.preventDefault();
   currentID = $(this).attr("note-id");
   deleteNote(currentID);
   console.log('Deleted article!');
-  location.reload();
+  // location.reload();
 })
 
 //Delete Article
@@ -203,7 +204,7 @@ $('.addNoteTrig').on("click", function(e) {
     let notesArea = $("#note-content");
     
     let notesDiv = $("<div>");
-        notesDiv.addClass("col-12");
+        notesDiv.addClass("col-12 noteCont");
         notesDiv.click(deleteNote);
 
     let noteTitle = $("<h4>");
@@ -219,12 +220,13 @@ $('.addNoteTrig').on("click", function(e) {
     let notesCloseBtn = $("<button>");
         notesCloseBtn.attr("type", "button");
         notesCloseBtn.attr("note-id", data[0].note[i]._id);
-        notesCloseBtn.addClass("btnGrp btn btn-success deleteNoteBtn");
+        notesCloseBtn.addClass("btnGrp btn-sm btn-success deleteNoteBtn float-right");
         notesCloseBtn.text("X");
         notesDiv.append(notesCloseBtn);
 
         notesArea.append(notesDiv);
   };
+
 });
 });
 

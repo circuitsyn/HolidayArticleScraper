@@ -77,3 +77,24 @@ body {
     color: white !important;
     font-weight: bold;
 }
+
+.noteCont {
+    background-color: rgba(178, 34, 34, 0.9);
+    border-radius: 10px;
+    padding: 1%;
+    width: 85%;
+    margin: 1%;
+}
+
+.notesAreaTitle {
+    font-family: "Holiday", monospace;
+    color: white;
+}
+
+.modal-title {
+    font-family: "Holiday", monospace;
+}
+
+.notesAreaBody {
+    color: white;
+}
