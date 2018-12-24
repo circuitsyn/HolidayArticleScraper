@@ -1,8 +1,11 @@
-# Holiday Lights Throwdown
+# Holiday Lights Throwdown :christmas_tree::gift::santa::bell::confetti_ball:
 
-![SnowmanLogo](./public./public//assets/images/snowman.png)
+![SnowmanLogo](./public/assets/images/snowman.png)
 
+> Technologies Used
 ## Landing Page
+
+ This
 
 ![Landing Page](./public/assets/images/LandingPage.PNG)
 
