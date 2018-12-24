@@ -59,7 +59,7 @@ body {
 
 .cardText {
     color: white;
-    /* font-size: 2.5vw */
+    font-size: 2.5vw
 }
 
 .btnGrp {
@@ -89,14 +89,22 @@ body {
 .notesAreaTitle {
     font-family: "Holiday", monospace;
     color: white;
+    font-size: 3vw;
 }
 
 .modal-title {
     font-family: "Holiday", monospace;
+    font-size: 3.5vw;
+}
+
+.modal-header {
+    padding-bottom: 0;
+    padding-bottom: 0;
 }
 
 .notesAreaBody {
     color: white;
+    font-size: 2.5vw;
 }
 
 .invalidInputIMG {

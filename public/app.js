@@ -208,12 +208,12 @@ $('.addNoteTrig').on("click", function(e) {
 
     let noteTitle = $("<h4>");
         noteTitle.text(data[0].note[i].title);
-        noteTitle.addClass("notesAreaTitle");
+        noteTitle.addClass("notesAreaTitle float-left");
         notesDiv.append(noteTitle);  
       
     let notesBody = $("<p>");
         notesBody.text(data[0].note[i].body)
-        notesBody.addClass("notesAreaBody");
+        notesBody.addClass("notesAreaBody float-left");
         notesDiv.append(notesBody);
 
     let notesCloseBtn = $("<button>");
@@ -235,6 +235,7 @@ $('.saveNote').on("click", function(e) {
   e.preventDefault();
   let titleInput = $("#titleinput").val();
   let bodyInput = $("#bodyinput").val();
+  let articleID = $('.saveNote').attr("data-id");
   if(titleInput || bodyInput != "") {
   // $('#noteModal').modal("hide")
 
@@ -247,7 +248,9 @@ $('.saveNote').on("click", function(e) {
       // Value taken from title input
       title: titleInput,
       // Value taken from note textarea
-      body: bodyInput
+      body: bodyInput,
+      // Saving article ID in note for repupulation of notes
+      relArtID: articleID
     }
     
   })
