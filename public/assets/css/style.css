@@ -81,7 +81,7 @@ body {
 .noteCont {
     background-color: rgba(178, 34, 34, 0.9);
     border-radius: 10px;
-    padding: 1%;
+    padding: 3%;
     width: 85%;
     margin: 1%;
 }
@@ -97,4 +97,16 @@ body {
 
 .notesAreaBody {
     color: white;
+}
+
+.invalidInputIMG {
+    border-radius: 10px;
+    height: 80%;
+    width: 80%;
+    padding: 4%;
+}
+
+.brokenInputText {
+    font-family: "Holiday", monospace;
+    padding: 3%;
 }
