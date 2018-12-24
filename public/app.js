@@ -36,6 +36,18 @@ const deleteArticle = (currentID) => {
   });
 }
 
+//Delete note function
+const deleteNote = (currentID) => {
+  event.preventDefault();
+  let id = currentID;
+  $.ajax({
+    method: "GET",
+    url: "/api/deleteNote/" + id
+  }).then(function() {
+    console.log('delete note call made')
+  });
+}
+
 //Scrape Bob Villa article function
 const scrapeVilla = () => {
   event.preventDefault();
@@ -58,8 +70,15 @@ const clearArticles = () => {
   });
 };
 
+//Delete Note
+$('.deleteNoteBtn').on("click", function() {
+  currentID = $(this).attr("data-id");
+  deleteNote(currentID);
+  console.log('Deleted article!');
+  location.reload();
+})
 
-//Delete Item
+//Delete Article
 $('.deleteBtn').on("click", function() {
   currentID = $(this).attr("data-id");
   deleteArticle(currentID);
@@ -165,4 +184,45 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+//Add Note Modal Trigger
+$('.addNoteTrig').on("click", function(e) {
+  e.preventDefault();
+  var ID = $(this).attr("data-id");
+  $('.saveNote').attr("data-id", ID);
+  $('#noteModal').modal("show");
+  
+});
+
+//Save Note Modal Trigger
+$('.saveNote').on("click", function(e) {
+  e.preventDefault();
+  $('#noteModal').modal("hide")
+
+  var thisId = $(this).attr("data-id");
+
+  console.log('title: ', $("#titleinput").val())
+  console.log('body: ', $("#bodyinput").val())
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "POST",
+    url: "/api/articles/" + thisId,
+    data: {
+      // Value taken from title input
+      title: $("#titleinput").val(),
+      // Value taken from note textarea
+      body: $("#bodyinput").val()
+    }
+    
+  })
+    // With that done
+    .then(function(data) {
+      // Log the response
+      console.log('note post data: ', data);
+      // Empty the notes section
+      // $("#notes").empty();
+    });
+
+});
+
 });
