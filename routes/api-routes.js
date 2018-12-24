@@ -140,9 +140,9 @@ app.get("/api/scrape/Bob", function(req, res) {
   });
   
   // Route for grabbing a specific Article by id, populate it with it's note
-  app.get("api/articles/:id", function(req, res) {
+  app.get("/api/articles/populate/:id", function(req, res) {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-    db.Article.findOne({ _id: req.params.id })
+    db.Article.find({ _id: req.params.id })
       // ..and populate all of the notes associated with it
       .populate("note")
       .then(function(dbArticle) {
