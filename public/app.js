@@ -71,8 +71,8 @@ const clearArticles = () => {
 };
 
 //Delete Note
-$('.deleteNoteBtn').on("click", function() {
-  currentID = $(this).attr("data-id");
+$("#note-content").on( "click", ".deleteNoteBtn", function() {
+  currentID = $(this).attr("note-id");
   deleteNote(currentID);
   console.log('Deleted article!');
   location.reload();
@@ -197,12 +197,35 @@ $('.addNoteTrig').on("click", function(e) {
     url: "/api/articles/populate/" + ID,  
   })
   .done(function(data) {
-    $("#note-content").append("<h4>" + data.title + "</h4>");
+    $('#note-content').empty();
+
+    for(i=0; i < data[0].note.length; i++){
+    let notesArea = $("#note-content");
+    
+    let notesDiv = $("<div>");
+        notesDiv.addClass("col-12");
+        notesDiv.click(deleteNote);
+
+    let noteTitle = $("<h4>");
+        noteTitle.text(data[0].note[i].title);
+        noteTitle.addClass("notesAreaTitle");
+        notesDiv.append(noteTitle);  
       
-      $("#note-content").append("<div class='form-group'><textarea class='form-control' rows='3' id='bodyinput' placeholder='Your note'></textarea></div>");
-      // A button to submit a new note, with the id of the article saved to it
-      $("#note-content").append("<button class='btn btn-secondary' data-id='" + data._id + "' id='savenote'>Save Note</button>");
-  });
+    let notesBody = $("<p>");
+        notesBody.text(data[0].note[i].body)
+        notesBody.addClass("notesAreaBody");
+        notesDiv.append(notesBody);
+
+    let notesCloseBtn = $("<button>");
+        notesCloseBtn.attr("type", "button");
+        notesCloseBtn.attr("note-id", data[0].note[i]._id);
+        notesCloseBtn.addClass("btnGrp btn btn-success deleteNoteBtn");
+        notesCloseBtn.text("X");
+        notesDiv.append(notesCloseBtn);
+
+        notesArea.append(notesDiv);
+  };
+});
 });
 
 //Save Note Modal Trigger
