@@ -22,7 +22,7 @@ This area lets you look at all the saved articles as well as click on the articl
 ![Saved Articles Section](./public/assets/images/articleTracker.PNG)
 
 ## Saved Notes Section
-Here you can view your notes as well as add a new one. Currently working on the functionality to reload the modal without forcing a refresh of the page. So right now it is manual, but shortly will be smooth and easy going! :metal:
+Here you can view your notes as well as add a new one all in one simple page!
 
 ![Saved Notes Section](./public/assets/images/noteTracker.PNG)
 
