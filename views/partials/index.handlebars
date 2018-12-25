@@ -7,13 +7,11 @@
 
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
-  
-          {{!-- Injecting card blocks --}}
-            {{#each result}}
-              {{#unless saved}}
-                {{> clippedDir/article-block }}
-              {{/unless}}
-            {{/each}}  
+    {{!-- Injecting card blocks --}}
+      {{#each result}}
+        {{#unless saved}}
+          {{> clippedDir/article-block }}
+        {{/unless}}
+      {{/each}}  
     </div>
-    {{!-- <a href="/">← Back To Home</a> --}}
   </div>
