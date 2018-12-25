@@ -3,7 +3,7 @@
 ![Snowing Gif](./public/assets/images/snowBG.gif)
 
 ##### Technologies Used :
-* Javascript, Node.JS, MongoDB, Bootstrap, Mongoose, Handlebars, HTML, CSS
+* Javascript, Node.JS, MongoDB, Express, Bootstrap, Mongoose, Handlebars, HTML, CSS
 
 ## Landing Page
 
