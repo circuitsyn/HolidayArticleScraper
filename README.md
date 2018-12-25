@@ -1,4 +1,4 @@
-# Holiday Lights Throwdown :christmas_tree::gift::santa::bell::confetti_ball:![SnowmanLogo](./public/assets/images/snowmanTiny.png)
+# Holiday Lights Throwdown :christmas_tree::gift::santa::bell::confetti_ball::snowman:
 
 ![Snowing Gif](./public/assets/images/snowBG.gif)
 
