@@ -10,6 +10,7 @@
 
 body {
     font-family: 'Main', monospace !important;
+    font-size: 2rem;
 }
 
 .jumbotron {
@@ -117,4 +118,8 @@ body {
 .brokenInputText {
     font-family: "Holiday", monospace;
     padding: 3%;
+}
+
+.form-control {
+    font-size: 2rem;
 }

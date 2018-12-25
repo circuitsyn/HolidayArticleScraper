@@ -1,5 +1,47 @@
 $(document.body).ready(function() {
 //functions
+//containerized populate function
+var populateFunc = function(ID){
+  console.log('inside pop func: ', ID)
+  $.ajax({
+    method: "GET",
+    url: "/api/articles/populate/" + ID,  
+  })
+  .done(function(data) {
+    $('#note-content').empty();
+    console.log('note building data: ', data);
+    for(i=0; i < data[0].note.length; i++){
+    let notesArea = $("#note-content");
+    
+    let notesDiv = $("<div>");
+        notesDiv.addClass("col-12 noteCont");
+
+    let noteTitle = $("<h4>");
+        noteTitle.text(data[0].note[i].title);
+        noteTitle.addClass("notesAreaTitle");
+        notesDiv.append(noteTitle);  
+      
+    let notesBody = $("<p>");
+        notesBody.text(data[0].note[i].body)
+        notesBody.addClass("notesAreaBody float-left");
+        notesDiv.append(notesBody);
+
+    let notesCloseBtn = $("<button>");
+        notesCloseBtn.attr("type", "button");
+        notesCloseBtn.attr("note-id", data[0].note[i]._id);
+        notesCloseBtn.attr("data-id", data[0].note[i].relArtID);
+        notesCloseBtn.addClass("btnGrp btn-sm btn-success deleteNoteBtn float-right");
+        notesCloseBtn.text("X");
+        // notesCloseBtn.click(deleteNoteBtn);
+        notesDiv.append(notesCloseBtn);
+
+        notesArea.append(notesDiv);
+  };
+
+});
+}
+
+
 //unsave item function
 const unsaveArticle = (currentID) => {
   event.preventDefault();
@@ -37,12 +79,16 @@ const deleteArticle = (currentID) => {
 }
 
 //Delete note function
-const deleteNote = (currentID) => {
-  let id = currentID;
+const deleteNote = (currentID, articleID) => {
+  // let id = currentID;
+  // let aId = articleID;
+  console.log('id info:', currentID, articleID);
   $.ajax({
     method: "GET",
-    url: "/api/deleteNote/" + id
+    url: "/api/deleteNote/" + currentID
   }).then(function() {
+      console.log('article ID entering pop func for delete note', articleID)
+    populateFunc(articleID);
     console.log('delete note call made')
   });
 }
@@ -71,11 +117,18 @@ const clearArticles = () => {
 
 //Delete Note
 $("#note-content").on( "click", ".deleteNoteBtn", function(e) {
-  currentID = $(this).attr("note-id");
-  deleteNote(currentID);
-  console.log('Deleted article!');
-  // location.reload();
-})
+  e.preventDefault();
+  let currentID = $(this).attr("note-id");
+  let articleID = $(this).attr("data-id");
+  console.log('first id set', currentID, articleID)
+  deleteNote(currentID, articleID);
+  console.log('Deleted note!');
+  populateFunc(articleID);
+  
+});
+//   .then(function(articleID) {  
+//   
+// });
 
 //Delete Article
 $('.deleteBtn').on("click", function() {
@@ -156,78 +209,16 @@ $.getJSON("/articles", function(data) {
 //     });
 // });
 
-// When you click the savenote button
-// $(document).on("click", "#savenote", function() {
-//   // Grab the id associated with the article from the submit button
-//   var thisId = $(this).attr("data-id");
-
-//   // Run a POST request to change the note, using what's entered in the inputs
-//   $.ajax({
-//     method: "POST",
-//     url: "/articles/" + thisId,
-//     data: {
-//       // Value taken from title input
-//       title: $("#titleinput").val(),
-//       // Value taken from note textarea
-//       body: $("#bodyinput").val()
-//     }
-//   })
-//     // With that done
-//     .then(function(data) {
-//       // Log the response
-//       console.log(data);
-//       // Empty the notes section
-//       $("#notes").empty();
-//     });
-
-//   // Also, remove the values entered in the input and textarea for note entry
-//   $("#titleinput").val("");
-//   $("#bodyinput").val("");
-// });
-
 //Add/view Note Modal Trigger
-$('.addNoteTrig').on("click", function(e) {
+$('.addViewNoteTrig').on("click", function(e) {
   e.preventDefault();
   let ID = $(this).attr("data-id");
   $('.saveNote').attr("data-id", ID);
   $('#note-content').empty();
   $('#noteModal').modal("show");
   
-  $.ajax({
-    method: "GET",
-    url: "/api/articles/populate/" + ID,  
-  })
-  .done(function(data) {
-    $('#note-content').empty();
+  populateFunc(ID);
 
-    for(i=0; i < data[0].note.length; i++){
-    let notesArea = $("#note-content");
-    
-    let notesDiv = $("<div>");
-        notesDiv.addClass("col-12 noteCont");
-
-    let noteTitle = $("<h4>");
-        noteTitle.text(data[0].note[i].title);
-        noteTitle.addClass("notesAreaTitle float-left");
-        notesDiv.append(noteTitle);  
-      
-    let notesBody = $("<p>");
-        notesBody.text(data[0].note[i].body)
-        notesBody.addClass("notesAreaBody float-left");
-        notesDiv.append(notesBody);
-
-    let notesCloseBtn = $("<button>");
-        notesCloseBtn.attr("type", "button");
-        notesCloseBtn.attr("note-id", data[0].note[i]._id);
-        notesCloseBtn.addClass("btnGrp btn-sm btn-success deleteNoteBtn float-right");
-        notesCloseBtn.text("X");
-        notesCloseBtn.click(deleteNote);
-        notesDiv.append(notesCloseBtn);
-
-        notesArea.append(notesDiv);
-  };
-
-});
 });
 
 //Save Note Modal Trigger
@@ -236,14 +227,13 @@ $('.saveNote').on("click", function(e) {
   let titleInput = $("#titleinput").val();
   let bodyInput = $("#bodyinput").val();
   let articleID = $('.saveNote').attr("data-id");
-  if(titleInput || bodyInput != "") {
-  // $('#noteModal').modal("hide")
+ 
 
-  var thisId = $(this).attr("data-id");
+  if(titleInput || bodyInput != "") {
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
-    url: "/api/articles/" + thisId,
+    url: "/api/articles/" + articleID,
     data: {
       // Value taken from title input
       title: titleInput,
@@ -255,11 +245,15 @@ $('.saveNote').on("click", function(e) {
     
   })
     // With that done
-    .then(function(data) {
+    .done(function(data) {
       // Log the response
       console.log('note post data: ', data);
+
+      populateFunc(articleID);
       // Empty the notes section
       // $("#notes").empty();
+      $('#titleInput').val('');
+      $('#bodyInput').val('');
     });
   }
 else {
