@@ -171,7 +171,7 @@ module.exports = function(app) {
   app.get("/api/clear", function(req, res) {
     db.Article.deleteMany({saved: false})
       .then(function(response) {
-        console.log ('cleared all unsaved');
+        console.log ('cleared all unsaved responde: ', response);
       })
       .catch(function(err) {
         res.json(err);

@@ -5,12 +5,23 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     db.Article.find({saved: false}).then(function(data) {
       // console.log(data);
-      res.render("partials/index", {
-        msg: "Welcome!",
-        result: data
-      });
-    });
+      if (data === undefined || data.length == 0) {
+        res.render("partials/index-empty");
+        console.log('rendered blank block'); 
+        console.log('html data blank: ', data);
+      }
+      else {
+        res.render("partials/index", {
+          msg: "Welcome!",
+          result: data
+        })
+        console.log('html data index: ', data);
+      }
+      
+      
+      
   });
+});
 
   // Load clipped items page
   app.get("/clipped", function(req, res) {

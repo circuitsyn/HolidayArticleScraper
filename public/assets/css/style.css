@@ -26,6 +26,7 @@ body {
 .greetingHeader {
     font-family: "Holiday", monospace;
     font-size: 7vw;
+    color: white;
 }
 
 #articles {
@@ -37,6 +38,7 @@ body {
     font-family: 'Main', monospace;
     font-size: 3vw;
     font-weight: bold;
+    color: white;
 }
 
 .resultsBG {
@@ -126,4 +128,13 @@ body {
 
 .fontOverwrite {
     font-size: 2rem;
+}
+
+.footer-copyright {
+    font-family: cursive;
+    font-size: 1rem;
+}
+
+.marginBotFix {
+    margin-bottom: 10%;
 }
