@@ -2,14 +2,14 @@ $(document.body).ready(function() {
 //functions
 //containerized populate function
 var populateFunc = function(ID){
-  console.log('inside pop func: ', ID)
+
   $.ajax({
     method: "GET",
     url: "/api/articles/populate/" + ID,  
   })
   .done(function(data) {
     $('#note-content').empty();
-    console.log('note building data: ', data);
+    
     for(i=0; i < data[0].note.length; i++){
     let notesArea = $("#note-content");
     
@@ -82,14 +82,12 @@ const deleteArticle = (currentID) => {
 const deleteNote = (currentID, articleID) => {
   // let id = currentID;
   // let aId = articleID;
-  console.log('id info:', currentID, articleID);
+  
   $.ajax({
     method: "GET",
     url: "/api/deleteNote/" + currentID
   }).then(function() {
-      console.log('article ID entering pop func for delete note', articleID)
     populateFunc(articleID);
-    console.log('delete note call made')
   });
 }
 
@@ -120,21 +118,15 @@ $("#note-content").on( "click", ".deleteNoteBtn", function(e) {
   e.preventDefault();
   let currentID = $(this).attr("note-id");
   let articleID = $(this).attr("data-id");
-  console.log('first id set', currentID, articleID)
   deleteNote(currentID, articleID);
-  console.log('Deleted note!');
   populateFunc(articleID);
   
 });
-//   .then(function(articleID) {  
-//   
-// });
 
 //Delete Article
 $('.deleteBtn').on("click", function() {
   currentID = $(this).attr("data-id");
   deleteArticle(currentID);
-  console.log('Deleted article!');
   location.reload();
 });
 
@@ -143,7 +135,6 @@ $('.saveBtn').on("click", function(e) {
   e.preventDefault();
   currentID = $(this).attr("data-id");
   saveArticle(currentID);
-  console.log("Ive been Clicked! - save");
   location.reload();
 });
 
@@ -151,7 +142,6 @@ $('.saveBtn').on("click", function(e) {
 $('.unsaveBtn').on("click", function() {
   currentID = $(this).attr("data-id");
   unsaveArticle(currentID);
-  console.log("Ive been Clicked! - unsave");
   location.reload();
 });
 
@@ -223,11 +213,11 @@ $('.addViewNoteTrig').on("click", function(e) {
 
 //Save Note Modal Trigger
 $('.saveNote').on("click", function(e) {
-  e.preventDefault();
+  // e.preventDefault();
   let titleInput = $("#titleinput").val();
   let bodyInput = $("#bodyinput").val();
   let articleID = $('.saveNote').attr("data-id");
- 
+  $(':input').val('');
 
   if(titleInput || bodyInput != "") {
   // Run a POST request to change the note, using what's entered in the inputs
@@ -246,14 +236,7 @@ $('.saveNote').on("click", function(e) {
   })
     // With that done
     .done(function(data) {
-      // Log the response
-      console.log('note post data: ', data);
-
       populateFunc(articleID);
-      // Empty the notes section
-      // $("#notes").empty();
-      $('#titleInput').val('');
-      $('#bodyInput').val('');
     });
   }
 else {
