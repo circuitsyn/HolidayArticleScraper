@@ -102,9 +102,20 @@ const scrapeVilla = () => {
   });
 }
 
+//Scrape Hottest Decor
+const scrapeHottest = () => {
+  event.preventDefault();
+  $.ajax({
+    method: "GET",
+    url: "/api/scrape/Hot"
+  }).then(function() {
+    location.reload();
+  });
+}
+
 //clear articles function
 const clearArticles = () => {
-  event.preventDefault();
+  // event.preventDefault();
   $.ajax({
     method: "GET",
     url: "/api/clear"
@@ -145,9 +156,14 @@ $('.unsaveBtn').on("click", function() {
   location.reload();
 });
 
-//scrape function
+//Bobvilla scrape function
 $('#bobVillaScrape').on("click", function() {
   scrapeVilla();
+});
+
+//Hottest Decore Scrape
+$('#hottestDecorScrape').on("click", function() {
+  scrapeHottest();
 });
 
 //Clear Items

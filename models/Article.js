@@ -24,6 +24,7 @@ var ArticleSchema = new Schema({
   },
   img: {
     type: String,
+    required: true
   },
   description: {
     type: String,
