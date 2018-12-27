@@ -1,12 +1,12 @@
 <div class="jumbotron jumbotron-fluid">
   <div id="articles" class="container">
     <h1 class="greetingHeader">&#38; Saved Articles &#38;</h1>
-    <p class="ml-4 greetingText">Here you can manage all of your saved articles as a community. You have the ability to add a note for safe keeping or to remove it from saved. Keep in mind if you remove it from saved it will be moved back to the main article section. If you choose delete it will scrap it entirely.</p>
+    <h2 class="ml-4 greetingText">Here you can manage all of your saved articles as a community. You have the ability to add a note for safe keeping or to remove it from saved. Keep in mind if you remove it from saved it will be moved back to the main article section. If you choose delete, it will scrap it entirely.</h2>
   </div>
 </div>
 
 <div class="container-fluid">
-  <div class="row d-flex justify-content-center">
+  <div class="row col-12 d-flex justify-content-center marginBotFix">
     {{#each result}}  
         {{> clippedDir/clipped-saved}}
     {{/each}}              

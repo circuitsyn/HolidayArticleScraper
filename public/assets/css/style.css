@@ -32,6 +32,8 @@ body {
 #articles {
     background-color: rgba(0,0,0,0.5);
     border-radius: 10px;
+    width: 80%;
+    text-align: center;
 }
 
 .greetingText {
@@ -62,7 +64,7 @@ body {
 
 .cardText {
     color: white;
-    font-size: 1.7rem
+    /* font-size: 1.7rem */
 }
 
 .btnGrp {
@@ -70,6 +72,7 @@ body {
     /* margin-bottom: 1%; */
     margin: 1% auto 1% auto;
     font-weight: bold;
+    font-size: 1.5rem;
 }
 
 .cardLink {
